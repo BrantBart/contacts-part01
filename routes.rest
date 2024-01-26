@@ -7,7 +7,6 @@ Get http://localhost:3000/contacts/65ac0a7245eff24773ec0ab7
 ### create a contact
 POST http://localhost:3000/contacts HTTP/1.1
 content-type application/json
-
 {
     "firstName":"Ashley",
     "lastName":"Weaver",
