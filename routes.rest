@@ -8,9 +8,9 @@ Get http://localhost:3000/contacts/65ac0a7245eff24773ec0ab7
 POST http://localhost:3000/contacts HTTP/1.1
 content-type application/json
 {
-    "firstName":"Ashley",
-    "lastName":"Weaver",
-    "email":"aWeaver@test.com",
+    "firstName":"Joseph",
+    "lastName":"Smith",
+    "email":"jsmith@test.com",
     "favoriteColor":"Brown",
     "birthday":"06/19/2000"
 }
