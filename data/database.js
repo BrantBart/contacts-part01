@@ -27,7 +27,21 @@ const getDatabase = () => {
   return database;
 };
 
+const saveContact = (contactData, callback) => {
+  const db = getDatabase();
+  const contactsCollection = db.db().collection("contacts");
+
+  contactsCollection.insertOne(contactData, (err, result) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, result.ops[0]);
+    }
+  });
+};
+
 module.exports = {
   initDb,
   getDatabase,
+  saveContact,
 };
