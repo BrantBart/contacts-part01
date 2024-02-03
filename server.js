@@ -1,12 +1,14 @@
 // required
 const express = require("express");
 const mongodb = require("./data/database");
+const bodyParser = require("body-parser");
 
 const app = express();
 
 const port = process.env.Port || 3000;
 
 app.use("/", require("./routes"));
+app.use(bodyParser.json());
 
 mongodb.initDb((err) => {
   if (err) {
