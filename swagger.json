@@ -1,11 +1,11 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Contacts API",
-    "description": "Contacts Api",
+    "title": "users API",
+    "description": "users Api",
     "version": "1.0.0"
   },
-  "host": "contacts-part-01.onrender.com",
+  "host": "users-part-01.onrender.com",
   "basePath": "/",
   "schemes": ["https"],
   "paths": {
@@ -20,9 +20,9 @@
         }
       }
     },
-    "/contacts/": {
+    "/users/": {
       "get": {
-        "tags": ["Contacts"],
+        "tags": ["users"],
         "description": "",
         "produces": ["application/json"],
         "responses": {
@@ -32,7 +32,7 @@
         }
       },
       "post": {
-        "tags": ["Contacts"],
+        "tags": ["users"],
         "description": "",
         "parameters": [
           {
@@ -70,9 +70,9 @@
         }
       }
     },
-    "/contacts/{id}": {
+    "/users/{id}": {
       "get": {
-        "tags": ["Contacts"],
+        "tags": ["users"],
         "description": "",
         "produces": ["application/json"],
         "parameters": [
@@ -93,7 +93,7 @@
         }
       },
       "put": {
-        "tags": ["Contacts"],
+        "tags": ["users"],
         "description": "",
         "parameters": [
           {
@@ -137,7 +137,7 @@
         }
       },
       "delete": {
-        "tags": ["Contacts"],
+        "tags": ["users"],
         "description": "",
         "parameters": [
           {
