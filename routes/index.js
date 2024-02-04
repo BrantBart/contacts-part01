@@ -7,10 +7,9 @@ router.get("/", (req, res) => {
   res.send("Hello World");
 });
 
-router.use("/users", require("./users"));
-router.use("/foods", require("./foods"));
-
-router.get("/login", passport.authenticate("github"), (req, res) => {});
+router.get("/login", (req, res, next) => {
+  passport.authenticate("github")(req, res, next);
+});
 
 router.get("/logout", function (req, res, next) {
   req.logout(function (err) {
@@ -20,5 +19,8 @@ router.get("/logout", function (req, res, next) {
     res.redirect("/");
   });
 });
+
+router.use("/users", require("./users"));
+router.use("/foods", require("./foods"));
 
 module.exports = router;

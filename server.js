@@ -5,6 +5,8 @@ const passport = require("passport");
 const session = require("express-session");
 const GitHubStrategy = require("passport-github2").Strategy;
 const cors = require("cors");
+const authenticateMiddleware = require("./middleware/authenticate");
+const swaggerRouter = require("./routes/swagger");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -32,9 +34,15 @@ app
     );
     next();
   })
-  .use(cors({ methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"] }))
-  .use(cors({ origin: "*" }))
-  .use("/", require("./routes"));
+  .use(
+    cors({
+      origin: "*",
+      methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
+    })
+  );
+
+app.use("/", require("./routes"));
+app.use(swaggerRouter);
 
 passport.use(
   new GitHubStrategy(
@@ -52,29 +60,36 @@ passport.use(
 passport.serializeUser((user, done) => {
   done(null, user);
 });
+
 passport.deserializeUser((user, done) => {
   done(null, user);
-});
-
-app.get("/", (req, res) => {
-  res.send(
-    req.session.user !== undefined
-      ? `Logged in as ${req.session.user.displayName}`
-      : "Logged Out"
-  );
 });
 
 app.get(
   "/github/callback",
   passport.authenticate("github", {
     failureRedirect: "/api-docs",
-    session: false,
   }),
   (req, res) => {
-    req.session.user = req.user;
-    res.redirect("/");
+    if (req.isAuthenticated()) {
+      req.session.user = req.user;
+      res.redirect("/");
+    } else {
+      res.redirect("/login");
+    }
   }
 );
+
+app.get("/", authenticateMiddleware.isAuthenticated, (req, res) => {
+  console.log("Session user:", req.session.user);
+  console.log("Passport user:", req.user);
+
+  res.send(
+    req.isAuthenticated()
+      ? `Logged in as ${req.user.displayName}`
+      : "Logged Out"
+  );
+});
 
 mongodb.initDb((err) => {
   if (err) {
