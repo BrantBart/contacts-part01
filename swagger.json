@@ -5,9 +5,9 @@
     "description": "Users and Food Api",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "rest-api-practice-w03.onrender.com",
   "basePath": "/",
-  "schemes": ["http", "https"],
+  "schemes": ["https"],
   "paths": {
     "/": {
       "get": {
