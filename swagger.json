@@ -1,28 +1,58 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "users API",
-    "description": "users Api",
+    "title": "Users and Food API",
+    "description": "Users and Food Api",
     "version": "1.0.0"
   },
-  "host": "rest-api-practice-w03.onrender.com",
+  "host": "localhost:3000",
   "basePath": "/",
-  "schemes": ["https"],
+  "schemes": ["http", "https"],
   "paths": {
     "/": {
       "get": {
         "tags": ["Hello World"],
         "description": "",
         "responses": {
-          "200": {
-            "description": "OK"
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/login": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/logout": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api-docs": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
           }
         }
       }
     },
     "/users/": {
       "get": {
-        "tags": ["users"],
+        "tags": ["Users"],
         "description": "",
         "produces": ["application/json"],
         "responses": {
@@ -32,7 +62,7 @@
         }
       },
       "post": {
-        "tags": ["users"],
+        "tags": ["Users"],
         "description": "",
         "parameters": [
           {
@@ -47,13 +77,16 @@
                 "lastName": {
                   "example": "any"
                 },
+                "height": {
+                  "example": "any"
+                },
+                "age": {
+                  "example": "any"
+                },
                 "email": {
                   "example": "any"
                 },
-                "favoriteColor": {
-                  "example": "any"
-                },
-                "birthday": {
+                "city": {
                   "example": "any"
                 }
               }
@@ -64,6 +97,9 @@
           "204": {
             "description": "No Content"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -72,7 +108,7 @@
     },
     "/users/{id}": {
       "get": {
-        "tags": ["users"],
+        "tags": ["Users"],
         "description": "",
         "produces": ["application/json"],
         "parameters": [
@@ -93,7 +129,7 @@
         }
       },
       "put": {
-        "tags": ["users"],
+        "tags": ["Users"],
         "description": "",
         "parameters": [
           {
@@ -114,13 +150,16 @@
                 "lastName": {
                   "example": "any"
                 },
+                "height": {
+                  "example": "any"
+                },
+                "age": {
+                  "example": "any"
+                },
                 "email": {
                   "example": "any"
                 },
-                "favoriteColor": {
-                  "example": "any"
-                },
-                "birthday": {
+                "city": {
                   "example": "any"
                 }
               }
@@ -131,13 +170,16 @@
           "204": {
             "description": "No Content"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
         }
       },
       "delete": {
-        "tags": ["users"],
+        "tags": ["Users"],
         "description": "",
         "parameters": [
           {
@@ -150,6 +192,143 @@
         "responses": {
           "204": {
             "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/foods/": {
+      "get": {
+        "tags": ["Foods"],
+        "description": "",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Foods"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "meal": {
+                  "example": "any"
+                },
+                "flavor": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/foods/{id}": {
+      "get": {
+        "tags": ["Foods"],
+        "description": "",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Foods"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "meal": {
+                  "example": "any"
+                },
+                "flavor": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Foods"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
